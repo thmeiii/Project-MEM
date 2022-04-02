@@ -57,4 +57,6 @@ def login():
             input("Press any key and enter to continue: ")
             login()
 
-    
+
+if __name__ == "__main__":
+    entryMenu()
