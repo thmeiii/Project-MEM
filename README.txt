@@ -25,12 +25,13 @@ We will write out this file ourselves. the only part that will be written by the
 each line represents one class which members and coaches can attend.
 format for each line can be: 
 
-classNumber classMonth expectedCoachAttendee1|expectedCoachAttendee2 expectedMemberAttendee1|expectedMemberAttendee2 coachWhoDidAttend1|coachWhoDidAttend2 memberWhoDidAttend1|memberWhoDidAttend2 memberWhoPayed1|memberWhoPayed2 
+classNumber classDay classMonth expectedCoachAttendee1|expectedCoachAttendee2 expectedMemberAttendee1|expectedMemberAttendee2 coachWhoDidAttend1|coachWhoDidAttend2 memberWhoDidAttend1|memberWhoDidAttend2 memberWhoPayed1|memberWhoPayed2 memberWhoDidNotPay1|memberWhoDidNotPay2
 
 classNumber will a number starting from 0 (first class is 0, second class is 1)
+classDay is a number starting from 0 
 classMonth is also a number starting from 0 (maybe we can do a few classes in each month number)
 all users in the attendees sections will be denoted by their usernames.
 expected coach attendees will be seperated by | characters 
-same thing goes for expected member attendees, and coaches and members who actually attended the class and members who payed.
+same thing goes for expected member attendees, coaches who attended members who attended, members who payed, and members who did not pay.
 
 

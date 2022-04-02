@@ -67,13 +67,43 @@ def login():
             login()
 
 def memberMainPage():
-    #
+    #options for user to choose from:
+    #-attend class
+    #   -show the schedule of classes
+    #   -ask what class they would like to attend (by class number)
+    #   -add this members username to the list of members who attended this class in classes.txt
+    #   -ask the user if they would like to pay for the class.
+    #       1. if yes:
+    #           -add this members username to the list of members who payed for this class in classes.txt
+    #           -remove $10 from the balance of this user in users.txt
+    #       2. if no:
+    #           -add this members username to the list of members who attended but did not pay for this class in classes.txt
+
+    
+    #-pay for classes in advance
+    #   -can only pay for a month in advance, we will simulate this by allowing them to pay for classes up to
+    #     a month after their last attended class.
+    #   -check through all the classes in classes.txt to see which is the last one where they appear in the attended list for.
+    #   -show the user a list of classes which happen within the next month of their last attended class.
+    #       -do this by checking that either (monthOfClass == monthOfLastAttendedClass AND dayOfClass > dayOfLastAttendedClass) OR (monthOfClass == monthOfLastAttendedClass + 1 AND dayOfClass <= dayOfLastAttendedClass)
+    #   -once user has selected which class numbers they want to pay for:
+    #       1.deduct $10 per selected class from their balance in users.txt
+    #       2.add their username to the list of expectedAttendees for each of the classes they just payed for.
+
+    #-open messageBoard
+
+    #-open private messages/notifications
+    #   -print all of the messages in the notifications section of their line in users.txt
+
+    #-logout
+    #   -go back to entry menu
+
     pass
 
 def coachMainPage():
     #options for user to choose from:
     #-send group mail to members 
-    #   -this adds a line to messageBoard.txt, then when users open mail box, we just print the whole text file for them
+    #   -this adds a line to messageBoard.txt, then when users open the message board, we just print the whole text file for them
 
     #-view members list (print all users with account type 1, and also the info required from the "keep a log of the members" requirement)
     #   -before displaying this list, ask how they should be sorted.
@@ -87,6 +117,9 @@ def coachMainPage():
     #   -show list of all classes
     #   -ask user which class number they would like to attend 
     #   -add username to end of list of coaches who attended that class number in classes.txt
+
+    #-logout
+    #   -go back to entry menu
 
     pass
 
