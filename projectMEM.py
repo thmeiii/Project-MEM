@@ -124,6 +124,13 @@ def coachMainPage():
     pass
 
 def treasurerMainPage():
+    #options for user:
+    #-view income statement (generate this based on current state)
+    #-view unpaid debt
+    #-add/remove coaches
+    #-view/edit schedule
+    #-pay rent
+    #-pay coaches
     pass
     
 

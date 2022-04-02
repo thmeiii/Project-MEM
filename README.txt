@@ -1,3 +1,5 @@
+#NOTE: we are now switching everything over from text files to python dataframes.
+
 This system will not go through time from the perspective of a real user.
 for example:
     -When a user logs in, they can click attend on any class no matter when it is, it doesn't matter which order either.

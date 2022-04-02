@@ -7,4 +7,5 @@ def addUser(accountType, firstName, lastName, username, password):
     #add to txt file a line in the format "accountType firstName lastName username password" and a new line.
     #new fields will probably be added to this such as account balance, classes payed for, etc.
     #don't bother checking if user already exists in system, we can add that later if we have time.
+    
     pass
