@@ -40,7 +40,15 @@ def register():
         lastName = input("Last name: ")
         username = input("Username: ")
         password = input("Password: ")
-        helpers.addUser(accountType, firstName, lastName, username, password)
+        if not helpers.existingUser(accountType, username):
+            helpers.addUser(accountType, firstName, lastName, username, password)
+            print("Success: Account created")
+            input("Press any key and enter to continue to the login screen: ")
+            login()
+        else:
+            print("An account of that type already exists for that username")
+            input("Press any key and enter to go back to the home screen: ")
+            entryMenu()
     else:
         entryMenu()
 
