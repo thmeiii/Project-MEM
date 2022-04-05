@@ -9,3 +9,7 @@ def addUser(accountType, firstName, lastName, username, password):
     #don't bother checking if user already exists in system, we can add that later if we have time.
     
     pass
+def existingUser(username):
+    #loop through the list of currently created user accounts to verify they already have an account
+
+    pass

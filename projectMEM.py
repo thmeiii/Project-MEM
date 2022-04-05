@@ -3,7 +3,7 @@
 
 import os
 import helpers
-from helpers import User
+#from helpers import User
 
 def entryMenu():
     os.system('cls')
@@ -29,31 +29,33 @@ def register():
     print("-------------------------------------------------------")
     print("Register")
     print("-------------------------------------------------------")
-    print("Member (1) | Coach (2) | Treasurer (3)")
+    print("Member (1) | Coach (2) | Treasurer (3) | Go Back (4)")
     accountType = input("Select account type: ")
-    if accountType != '1' and accountType != '2' and accountType != '3':
+    if int(accountType) not in range(1,5):
         print("Error: Invalid input")
         input("Press any key and enter to continue: ")
         register()
-    else:
+    elif int(accountType) in range(1,4):
         firstName = input("First name: ")
         lastName = input("Last name: ")
         username = input("Username: ")
         password = input("Password: ")
         helpers.addUser(accountType, firstName, lastName, username, password)
+    else:
+        entryMenu()
 
 def login():
     os.system('cls')
     print("-------------------------------------------------------")
     print("Login")
     print("-------------------------------------------------------")
-    print("Member (1) | Coach (2) | Treasurer (3)")
+    print("Member (1) | Coach (2) | Treasurer (3) | Go Back (4)")
     accountType = input("Select account type: ")
-    if accountType != '1' and accountType != '2' and accountType != '3':
+    if int(accountType) not in range(1,5):
         print("Error: Invalid input")
         input("Press any key and enter to continue: ")
         login()
-    else:
+    elif int(accountType) in range(1,4):
         username = input("Username: ")
         password = input("Password: ")
         if helpers.validUserPass(accountType, username, password):
@@ -67,6 +69,8 @@ def login():
             print("Error: Incorrect credentials")
             input("Press any key and enter to continue: ")
             login()
+    else:
+        entryMenu()
 
 def memberMainPage():
     #options for user to choose from:
