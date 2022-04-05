@@ -11,12 +11,14 @@ def entryMenu():
     print("-------------------------------------------------------")
     print("Main Menu")
     print("-------------------------------------------------------")
-    print("Register (1) | Login (2)")
+    print("Register (1) | Login (2) | Exit (0)")
     selection = input("Selection: ")
     if selection == '1':
         register()
     elif selection == '2':
         login()
+    elif selection == '0':
+        end()
     else:
         print("Error: Invalid input")
         input("Press any key and enter to continue: ")
@@ -43,7 +45,7 @@ def register():
 def login():
     os.system('cls')
     print("-------------------------------------------------------")
-    print("Register")
+    print("Login")
     print("-------------------------------------------------------")
     print("Member (1) | Coach (2) | Treasurer (3)")
     accountType = input("Select account type: ")
@@ -132,7 +134,14 @@ def treasurerMainPage():
     #-pay rent
     #-pay coaches
     pass
-    
+
+def end():
+    #Simple exit screen
+    os.system('cls')
+    print("-------------------------------------------------------")
+    print("Thank you for using the Membership System")
+    print("-------------------------------------------------------")
+    os._exit(0)
 
 if __name__ == "__main__":
     entryMenu()
