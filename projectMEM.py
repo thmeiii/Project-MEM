@@ -3,7 +3,7 @@
 
 import os
 import helpers
-from helpers import User
+#from helpers import User
 
 def entryMenu():
     os.system('cls')
@@ -11,12 +11,14 @@ def entryMenu():
     print("-------------------------------------------------------")
     print("Main Menu")
     print("-------------------------------------------------------")
-    print("Register (1) | Login (2)")
+    print("Register (1) | Login (2) | Exit (0)")
     selection = input("Selection: ")
     if selection == '1':
         register()
     elif selection == '2':
         login()
+    elif selection == '0':
+        end()
     else:
         print("Error: Invalid input")
         input("Press any key and enter to continue: ")
@@ -27,31 +29,41 @@ def register():
     print("-------------------------------------------------------")
     print("Register")
     print("-------------------------------------------------------")
-    print("Member (1) | Coach (2) | Treasurer (3)")
+    print("Member (1) | Coach (2) | Treasurer (3) | Go Back (4)")
     accountType = input("Select account type: ")
-    if accountType != '1' and accountType != '2' and accountType != '3':
+    if int(accountType) not in range(1,5):
         print("Error: Invalid input")
         input("Press any key and enter to continue: ")
         register()
-    else:
+    elif int(accountType) in range(1,4):
         firstName = input("First name: ")
         lastName = input("Last name: ")
         username = input("Username: ")
         password = input("Password: ")
-        helpers.addUser(accountType, firstName, lastName, username, password)
+        if not helpers.existingUser(accountType, username):
+            helpers.addUser(accountType, firstName, lastName, username, password)
+            print("Success: Account created")
+            input("Press any key and enter to continue to the login screen: ")
+            login()
+        else:
+            print("An account of that type already exists for that username")
+            input("Press any key and enter to go back to the home screen: ")
+            entryMenu()
+    else:
+        entryMenu()
 
 def login():
     os.system('cls')
     print("-------------------------------------------------------")
-    print("Register")
+    print("Login")
     print("-------------------------------------------------------")
-    print("Member (1) | Coach (2) | Treasurer (3)")
+    print("Member (1) | Coach (2) | Treasurer (3) | Go Back (4)")
     accountType = input("Select account type: ")
-    if accountType != '1' and accountType != '2' and accountType != '3':
+    if int(accountType) not in range(1,5):
         print("Error: Invalid input")
         input("Press any key and enter to continue: ")
         login()
-    else:
+    elif int(accountType) in range(1,4):
         username = input("Username: ")
         password = input("Password: ")
         if helpers.validUserPass(accountType, username, password):
@@ -65,6 +77,8 @@ def login():
             print("Error: Incorrect credentials")
             input("Press any key and enter to continue: ")
             login()
+    else:
+        entryMenu()
 
 def memberMainPage():
     #options for user to choose from:
@@ -132,7 +146,14 @@ def treasurerMainPage():
     #-pay rent
     #-pay coaches
     pass
-    
+
+def end():
+    #Simple exit screen
+    os.system('cls')
+    print("-------------------------------------------------------")
+    print("Thank you for using the Membership System")
+    print("-------------------------------------------------------")
+    os._exit(0)
 
 if __name__ == "__main__":
     entryMenu()
