@@ -1,5 +1,5 @@
 #this file will only have functions which directly relate to the UI and display text.
-#all functions that just perform an action will go in helpers.py fghnjm
+#all functions that just perform an action will go in helpers.py
 
 import os
 import helpers
