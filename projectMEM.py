@@ -3,7 +3,7 @@
 
 import os
 import helpers
-from helpers import User
+#from helpers import User
 
 def entryMenu():
     os.system('cls')
@@ -11,96 +11,175 @@ def entryMenu():
     print("-------------------------------------------------------")
     print("Main Menu")
     print("-------------------------------------------------------")
-    print("Register (1) | Login (2)")
+    print("Register (1) | Login (2) | Exit (0)")
     selection = input("Selection: ")
     if selection == '1':
         register()
+        return
     elif selection == '2':
         login()
+        return
+    elif selection == '0':
+        end()
+        return
     else:
         print("Error: Invalid input")
         input("Press any key and enter to continue: ")
         entryMenu()
+        return
 
 def register():
     os.system('cls')
     print("-------------------------------------------------------")
     print("Register")
     print("-------------------------------------------------------")
-    print("Member (1) | Coach (2) | Treasurer (3)")
+    print("Member (1) | Coach (2) | Treasurer (3) | Go Back (4)")
     accountType = input("Select account type: ")
-    if accountType != '1' and accountType != '2' and accountType != '3':
+    if int(accountType) not in range(1,5):
         print("Error: Invalid input")
         input("Press any key and enter to continue: ")
         register()
-    else:
+        return
+    elif int(accountType) in range(1,4):
         firstName = input("First name: ")
         lastName = input("Last name: ")
         username = input("Username: ")
         password = input("Password: ")
-        helpers.addUser(accountType, firstName, lastName, username, password)
+        if not helpers.existingUser(accountType, username):
+            helpers.addUser(accountType, firstName, lastName, username, password)
+            print("Success: Account created")
+            input("Press any key and enter to continue to the login screen: ")
+            login()
+            return
+        else:
+            print("An account of that type already exists for that username")
+            input("Press any key and enter to go back to the home screen: ")
+            entryMenu()
+            return
+    else:
+        entryMenu()
 
 def login():
     os.system('cls')
     print("-------------------------------------------------------")
-    print("Register")
+    print("Login")
     print("-------------------------------------------------------")
-    print("Member (1) | Coach (2) | Treasurer (3)")
+    print("Member (1) | Coach (2) | Treasurer (3) | Go Back (4)")
     accountType = input("Select account type: ")
-    if accountType != '1' and accountType != '2' and accountType != '3':
+    if int(accountType) not in range(1,5):
         print("Error: Invalid input")
         input("Press any key and enter to continue: ")
         login()
-    else:
+        return
+    elif int(accountType) in range(1,4):
         username = input("Username: ")
         password = input("Password: ")
         if helpers.validUserPass(accountType, username, password):
+            userID = helpers.getID(username)
             if accountType == '1':
-                memberMainPage()
+                memberMainPage(userID)
+                return
             elif accountType == '2':
-                coachMainPage()
+                coachMainPage(userID)
+                return
             else:
-                treasurerMainPage()
+                treasurerMainPage(userID)
+                return
         else:
             print("Error: Incorrect credentials")
             input("Press any key and enter to continue: ")
             login()
+            return
+    else:
+        entryMenu()
+        return
 
-def memberMainPage():
-    #options for user to choose from:
-    #-attend class
-    #   -show the schedule of classes
-    #   -ask what class they would like to attend (by class number)
-    #   -add this members username to the list of members who attended this class in classes.txt
-    #   -ask the user if they would like to pay for the class.
-    #       1. if yes:
-    #           -add this members username to the list of members who payed for this class in classes.txt
-    #           -remove $10 from the balance of this user in users.txt
-    #       2. if no:
-    #           -add this members username to the list of members who attended but did not pay for this class in classes.txt
+def memberMainPage(userID):
+    os.system('cls')
+    print("-------------------------------------------------------")
+    print("Member Main Page")
+    print("-------------------------------------------------------")
+    print("Attend a class (1) | Pay for future classes (2) | Open message inbox (3) | Log out (4)")
+    selection = input("Selection: ")
+    if selection == '1':
+        memberAttend(userID)
+        return
+    elif selection == '2':
+        payForFutureClasses(userID)
+        return
+    elif selection == '3':
+        messageInbox(userID)
+        return
+    elif selection == '4':
+        entryMenu()
+        return
+    else:
+        print("Error: Invalid input")
+        input("Press any key and enter to continue: ")
+        memberMainPage(userID)
+        return
 
-    
-    #-pay for classes in advance
-    #   -can only pay for a month in advance, we will simulate this by allowing them to pay for classes up to
-    #     a month after their last attended class.
-    #   -check through all the classes in classes.txt to see which is the last one where they appear in the attended list for.
-    #   -show the user a list of classes which happen within the next month of their last attended class.
-    #       -do this by checking that either (monthOfClass == monthOfLastAttendedClass AND dayOfClass > dayOfLastAttendedClass) OR (monthOfClass == monthOfLastAttendedClass + 1 AND dayOfClass <= dayOfLastAttendedClass)
-    #   -once user has selected which class numbers they want to pay for:
-    #       1.deduct $10 per selected class from their balance in users.txt
-    #       2.add their username to the list of expectedAttendees for each of the classes they just payed for.
+def memberAttend(userID):
+    os.system('cls')
+    print("-------------------------------------------------------")
+    print("Attend a class")
+    print("-------------------------------------------------------")
+    helpers.displayClasses() #should display a numbered list of classes with some associated info for each one
+    classID = int(input("Enter class ID of class you want to select: "))
+    payedString = input("Would you like to pay for the class when you attend?(y/n): ")
+    if payedString == "y":
+        payed = True
+    elif payedString == "n":
+        payed = False
+    else:
+        print("Error: Invalid input")
+        input("Press any key and enter to continue: ")
+        memberAttend()
+        return
 
-    #-open messageBoard
+    if helpers.validClassID(classID):
+        helpers.attendClass(userID, classID, payed)
+        input("Success! Press any key to return to Member main page: ")
+        memberMainPage(userID)
+        return
+    else:
+        print('Error: invalid class ID')
+        input("Press any key and enter to continue: ")
+        memberAttend(userID)
+        return
 
-    #-open private messages/notifications
-    #   -print all of the messages in the notifications section of their line in users.txt
+def payForFutureClasses(userID):
+    os.system('cls')
+    print("-------------------------------------------------------")
+    print("Pay for future classes")
+    print("-------------------------------------------------------")
+    helpers.displayClassesWithinNextMonth()
+    print("Type class ID numbers that you would like to pay for seperated by spaces.")
+    classIDs = list(map(int, input("Selections: ").split())) #converts input to list of ints
+    for ID in classIDs:
+        if not helpers.validClassID(ID):
+            print('Error: invalid class ID')
+            input("Payment failed. Press any key and enter to continue: ")
+            payForFutureClasses(userID)
+            return
+    for ID in classIDs:
+        helpers.payForClass(userID, ID)
 
-    #-logout
-    #   -go back to entry menu
+    input("Success! Press any key to return to Member main page: ")
+    memberMainPage(userID) 
+    return  
 
-    pass
+def messageInbox(userID):
+    os.system('cls')
+    print("-------------------------------------------------------")
+    print("Message Inbox")
+    print("-------------------------------------------------------")
+    helpers.displayInbox(userID)
+    input("Press any key to go back: ")
+    memberMainPage(userID)
 
-def coachMainPage():
+
+def coachMainPage(userID):
     #options for user to choose from:
     #-send group mail to members 
     #   -this adds a line to messageBoard.txt, then when users open the message board, we just print the whole text file for them
@@ -123,7 +202,7 @@ def coachMainPage():
 
     pass
 
-def treasurerMainPage():
+def treasurerMainPage(userID):
     #options for user:
     #-view income statement (generate this based on current state)
     #-view unpaid debt
@@ -132,7 +211,14 @@ def treasurerMainPage():
     #-pay rent
     #-pay coaches
     pass
-    
+
+def end():
+    #Simple exit screen
+    os.system('cls')
+    print("-------------------------------------------------------")
+    print("Thank you for using the Membership System")
+    print("-------------------------------------------------------")
+    os._exit(0)
 
 if __name__ == "__main__":
     entryMenu()
