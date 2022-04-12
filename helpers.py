@@ -21,7 +21,3 @@ def displayClasses(month):
 def getID(username):
     #finds the user with username matching the username parameter. returns their ID number
     pass
-
-
-
-

@@ -212,7 +212,7 @@ def treasurerMainPage():
     print("-------------------------------------------------------")
     print("Treasuer Main Page")
     print("-------------------------------------------------------")
-    print("View Finances (1) | Coach List (2) | View Schedule (3) | Log out (4)")
+    print("View Finances (1) | Coach List (2) | View Schedule (3) | Member Log (4) | Log out (5)")
     selection = input("Selection: ")
     if selection == '1':
         treasurerFinances()#view income statement, view unpaid debt, pay rent, and pay coaches
@@ -224,11 +224,20 @@ def treasurerMainPage():
         treasurerSchedule()#view/edit schedule
         return
     elif selection == '4':
+        treasurerMemberLog()#Create member log
+        return
+    elif selection == '5':
         entryMenu()
         return
     pass
 
 def treasurerFinances():
+    os.system('cls')
+    print("-------------------------------------------------------")
+    print("Treasuer Main Page")
+    print("-------------------------------------------------------")
+    print("View Combined Report (1) | Coach List (2) | View Schedule (3) | Log out (4)")
+    selection = input("Selection: ")
     #This screen will allow the treasurer to view outstanding balances, pay coaches/rent and generate financal reports
     pass
 
@@ -238,6 +247,10 @@ def treasurerCoachList():
 
 def treasurerSchedule():
     #Will generate the monthly schedule and be able to assign coaches
+    pass
+
+def treasurerMemberLog():
+    #Creates list of all members sorted on attendace for a given month
     pass
 
 if __name__ == "__main__":
