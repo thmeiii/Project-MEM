@@ -215,35 +215,30 @@ def treasurerMainPage():
     print("View Finances (1) | Coach List (2) | View Schedule (3) | Log out (4)")
     selection = input("Selection: ")
     if selection == '1':
-        treasurerFinances()#-send group mail to members.
+        treasurerFinances()#view income statement, view unpaid debt, pay rent, and pay coaches
         return
     elif selection == '2':
-        treasurerCoachList()#-Shows a list of all classes that coach is scheduled for. From there the coach can manipulate attendance records
+        treasurerCoachList()#add/remove coaches
         return
     elif selection == '3':
-        treasurerSchedule()
+        treasurerSchedule()#view/edit schedule
         return
     elif selection == '4':
         entryMenu()
         return
-    #options for user:
-    #-view income statement (generate this based on current state)
-    #-view unpaid debt
-    #-add/remove coaches
-    #-view/edit schedule
-    #-pay rent
-    #-pay coaches
     pass
+
 def treasurerFinances():
     #This screen will allow the treasurer to view outstanding balances, pay coaches/rent and generate financal reports
     pass
+
 def treasurerCoachList():
     #In this section the treasurer will be able to see all coaches and edit the list as needed
     pass
+
 def treasurerSchedule():
     #Will generate the monthly schedule and be able to assign coaches
     pass
 
 if __name__ == "__main__":
     entryMenu()
-    
