@@ -149,7 +149,7 @@ def memberAttend(userID):
         memberAttend(userID)
         return
 
-def payForFutureClasses(userID):
+def memberPayForFutureClasses(userID):
     os.system('cls')
     print("-------------------------------------------------------")
     print("Pay for future classes")
@@ -161,7 +161,7 @@ def payForFutureClasses(userID):
         if not helpers.validClassID(ID):
             print('Error: invalid class ID')
             input("Payment failed. Press any key and enter to continue: ")
-            payForFutureClasses(userID)
+            memberPayForFutureClasses(userID)
             return
     for ID in classIDs:
         helpers.payForClass(userID, ID)
@@ -179,30 +179,27 @@ def messageInbox(userID):
     input("Press any key to go back: ")
     memberMainPage(userID)
 
-
 def coachMainPage(userID):
-    #options for user to choose from:
-    #-send group mail to members 
-    #   -this adds a line to messageBoard.txt, then when users open the message board, we just print the whole text file for them
+    os.system('cls')
+    print("-------------------------------------------------------")
+    print("Coach Main Page")
+    print("-------------------------------------------------------")
+    print("Send Message (1) | View My Classes (2) | Log out (3)")
+    selection = input("Selection: ")
+    if selection == '1':
+        coachSendMessage(userID)#-send group mail to members.
+        return
+    elif selection == '2':
+        coachViewClasses(userID)#-Shows a list of all classes that coach is scheduled for. From there the coach can manipulate attendance records
+        return
+    elif selection == '3':
+        entryMenu()
+        return
 
-    #-view members list (print all users with account type 1, and also the info required from the "keep a log of the members" requirement)
-    #   -before displaying this list, ask how they should be sorted.
-    #       1. by frequency of attendance
-    #       2. by ratio of how many times they have payed and not payed
-
-    #-add/remove members 
-    #   -input username of member to remove, then remove the line from users.txt
-
-    #-attend class
-    #   -show list of all classes
-    #   -ask user which class number they would like to attend 
-    #   -add username to end of list of coaches who attended that class number in classes.txt
-
-    #-logout
-    #   -go back to entry menu
-
+def coachSendMessage(UserID):
     pass
-
+def coachViewClasses(UserID):
+    pass
 def treasurerMainPage(userID):
     #options for user:
     #-view income statement (generate this based on current state)
