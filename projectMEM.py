@@ -29,6 +29,13 @@ def entryMenu():
         input("Press any key and enter to continue: ")
         entryMenu()
         return
+def end():
+    #Simple exit screen
+    os.system('cls')
+    print("-------------------------------------------------------")
+    print("Thank you for using the Membership System")
+    print("-------------------------------------------------------")
+    os._exit(0)
 
 def register():
     os.system('cls')
@@ -200,7 +207,25 @@ def coachSendMessage(UserID):
     pass
 def coachViewClasses(UserID):
     pass
-def treasurerMainPage(userID):
+def treasurerMainPage():
+    os.system('cls')
+    print("-------------------------------------------------------")
+    print("Treasuer Main Page")
+    print("-------------------------------------------------------")
+    print("View Finances (1) | Coach List (2) | View Schedule (3) | Log out (4)")
+    selection = input("Selection: ")
+    if selection == '1':
+        treasurerFinances()#-send group mail to members.
+        return
+    elif selection == '2':
+        treasurerCoachList()#-Shows a list of all classes that coach is scheduled for. From there the coach can manipulate attendance records
+        return
+    elif selection == '3':
+        treasurerSchedule()
+        return
+    elif selection == '4':
+        entryMenu()
+        return
     #options for user:
     #-view income statement (generate this based on current state)
     #-view unpaid debt
@@ -209,14 +234,16 @@ def treasurerMainPage(userID):
     #-pay rent
     #-pay coaches
     pass
-
-def end():
-    #Simple exit screen
-    os.system('cls')
-    print("-------------------------------------------------------")
-    print("Thank you for using the Membership System")
-    print("-------------------------------------------------------")
-    os._exit(0)
+def treasurerFinances():
+    #This screen will allow the treasurer to view outstanding balances, pay coaches/rent and generate financal reports
+    pass
+def treasurerCoachList():
+    #In this section the treasurer will be able to see all coaches and edit the list as needed
+    pass
+def treasurerSchedule():
+    #Will generate the monthly schedule and be able to assign coaches
+    pass
 
 if __name__ == "__main__":
     entryMenu()
+    
