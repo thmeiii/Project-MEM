@@ -8,12 +8,6 @@ def addUser(accountType, firstName, lastName, username, password):
     #don't bother checking if user already exists in system, we can add that later if we have time.
     
     pass
-def existingUser(accountType,username):
-    #loop through the list of currently created user accounts to verify they already have an account
-    #Return false if there is not a matching account, otherwise true.
-    return True
-    #adds user to the database
-    pass
 
 def existingUser(accountType,username):
     #returns true if user exists in database, otherwise false
