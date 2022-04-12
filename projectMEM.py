@@ -106,7 +106,7 @@ def memberMainPage(userID):
         memberAttend(userID)
         return
     elif selection == '2':
-        payForFutureClasses(userID)
+        memberPayForFutureClasses(userID)
         return
     elif selection == '3':
         messageInbox(userID)
