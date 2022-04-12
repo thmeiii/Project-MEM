@@ -145,16 +145,16 @@ def memberAttend(userID):
         memberAttend()
         return
 
-    if helpers.validClassID(classID):
-        helpers.attendClass(userID, classID, payed)
-        input("Success! Press any key to return to Member main page: ")
-        memberMainPage(userID)
-        return
-    else:
-        print('Error: invalid class ID')
-        input("Press any key and enter to continue: ")
-        memberAttend(userID)
-        return
+    # if helpers.validClassID(classID):
+    helpers.attendClass(userID, classID, payed)
+    input("Success! Press any key to return to Member main page: ")
+    memberMainPage(userID)
+    return
+    # else:
+    #     print('Error: invalid class ID')
+    #     input("Press any key and enter to continue: ")
+    #     memberAttend(userID)
+    #     return
 
 def memberPayForFutureClasses(userID):
     os.system('cls')
