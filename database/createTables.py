@@ -18,12 +18,14 @@ backEnd.runCommand(command)
 #add table
 command = '''
 CREATE TABLE IF NOT EXISTS memberList(
-  id int PRIMARY KEY,
+  id int,
   memberType varchar(255),
   firstName varchar(255),
   lastName varchar(255),
+  password varchar(255),
   phoneNumber int,
-  email varchar(255)
+  email varchar(255),
+  PRIMARY KEY (id)
   );
 '''
 backEnd.runCommand(command)
@@ -38,6 +40,5 @@ SELECT *
 FROM memberList;
 '''
 # print(backEnd.showTables()) #to see list of tables
-
 readMemberList = backEnd.runQuery(command)
-print(readMemberList.head())
+print(readMemberList.head(5)) #print the first 5 row of dataframe
