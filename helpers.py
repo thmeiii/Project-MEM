@@ -1,3 +1,12 @@
+import sys
+
+#add database file to Python's search directory
+sys.path.append('./database')
+
+import backend
+
+print(backend.DATABASE_PATH)
+
 def validUserPass(accountType, username, password):
     #checks if username and password match
     return True

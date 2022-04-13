@@ -1,13 +1,16 @@
 #Will Delete All Tables and Insert Brand New Data from Excel
-
+import sys
 import sqlite3
-from tkinter import COMMAND
 import backEnd
 import pandas as pd
 import numpy as np
 
+#add database folder to Python's import module search path
+sys.path.append('.\database')
+
+#establish connection
 conn = sqlite3.connect(backEnd.DATABASE_PATH)
-membersListFilePath = r"C:\Users\KI PC\OneDrive\Documents\Software Engineering and Computer Science\CS Bachelor in Ryerson\[4] Year 2 Semester 2\CPS406 - Software Engineering I\Assignments\Assignment3\database\membersList.xls"
+membersListFilePath = 'membersList.xls'
 
 #drop existing table
 command = '''
@@ -39,6 +42,7 @@ command = '''
 SELECT *
 FROM memberList;
 '''
+
 # print(backEnd.showTables()) #to see list of tables
 readMemberList = backEnd.runQuery(command)
 print(readMemberList.head(5)) #print the first 5 row of dataframe
