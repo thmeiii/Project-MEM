@@ -5,12 +5,9 @@ import backEnd
 import pandas as pd
 import numpy as np
 
-#add database folder to Python's import module search path
-sys.path.append('.\database')
-
 #establish connection
-conn = sqlite3.connect(backEnd.DATABASE_PATH)
-membersListFilePath = 'membersList.xls'
+conn = sqlite3.connect(backEnd.DATABASE_PATH) 
+membersListFilePath = "membersList.xls"
 
 #drop existing table
 command = '''
